@@ -1,18 +1,25 @@
 <?php
 
-namespace Zahzah\ModuleIcd\Models;
+namespace Hanafalah\ModuleIcd\Models;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Zahzah\LaravelHasProps\Concerns\HasProps;
-use Zahzah\LaravelSupport\Models\BaseModel;
-use Zahzah\ModuleIcd\Resources\ICD\ViewICD;
+use Hanafalah\LaravelHasProps\Concerns\HasProps;
+use Hanafalah\LaravelSupport\Models\BaseModel;
+use Hanafalah\ModuleIcd\Resources\ICD\ViewICD;
 
-class ICD extends BaseModel {
+class ICD extends BaseModel
+{
     use HasProps, SoftDeletes;
 
-    protected $table    = 'icds'; 
+    protected $table    = 'icds';
     protected $fillable = [
-        'id', 'parent_id', 'name' , 'local_name', 'code', 'version', 'props'
+        'id',
+        'parent_id',
+        'name',
+        'local_name',
+        'code',
+        'version',
+        'props'
     ];
 
     protected $casts = [
@@ -20,7 +27,8 @@ class ICD extends BaseModel {
         'code' => 'string'
     ];
 
-    public function toViewApi(){
+    public function toViewApi()
+    {
         return new ViewICD($this);
     }
 }

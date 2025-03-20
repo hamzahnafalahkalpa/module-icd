@@ -1,25 +1,25 @@
 {
-    "name": "zahzah/module-icd",
+    "name": "hanafalah/module-icd",
     "description": "bridging to icd who",
     "type": "package",
     "require": {
-        "zahzah/laravel-support": "1.x",
+        "hanafalah/laravel-support": "1.x",
         "stichoza/google-translate-php": "^5.2"
     },
     "autoload": {
         "psr-4": {
-            "Zahzah\\ModuleIcd\\": "src/"
+            "Hanafalah\\ModuleIcd\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Zahzah\\ModuleIcd\\Tests\\": "tests/"
+            "Hanafalah\\ModuleIcd\\Tests\\": "tests/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Zahzah\\ModuleIcd\\ModuleIcdServiceProvider"
+                "Hanafalah\\ModuleIcd\\ModuleIcdServiceProvider"
             ]
         }
     },

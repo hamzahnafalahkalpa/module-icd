@@ -1,16 +1,14 @@
 <?php
 
-use Zahzah\ModuleIcd\Commands;
-use Zahzah\ModuleIcd\Models as ModuleIcd;
+use Hanafalah\ModuleIcd\Commands;
+use Hanafalah\ModuleIcd\Models as ModuleIcd;
 
 return [
-    'version'            => [
-        
-    ],
+    'version'            => [],
     'lang'               => 'en',
-    'api_version'        => env('ICD_API_VERSION','v2'),
+    'api_version'        => env('ICD_API_VERSION', 'v2'),
     'authentication'     => [
-        'client_id'      => env('ICD_CLIENT_ID'), 
+        'client_id'      => env('ICD_CLIENT_ID'),
         'client_secret'  => env('ICD_CLIENT_SECRET')
     ],
     'translate' => [

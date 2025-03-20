@@ -1,8 +1,9 @@
 <?php
 
-namespace Zahzah\ModuleIcd\Concerns\Base;
+namespace Hanafalah\ModuleIcd\Concerns\Base;
 
-trait HasEndPoint{
+trait HasEndPoint
+{
     use HasEntity, HasRelease;
 
     protected string $__base_url   = "https://id.who.int/icd/";
@@ -12,15 +13,17 @@ trait HasEndPoint{
         'release' => 'release'
     ];
 
-    protected function getUrl(string $end_point, string $url = ''): string{
+    protected function getUrl(string $end_point, string $url = ''): string
+    {
         $end_point = $this->__end_points[$end_point] ?? $end_point;
         $url = str_replace($this->__base_url, '', $url);
-        return $this->__url = $this->__base_url.$url.$end_point;
+        return $this->__url = $this->__base_url . $url . $end_point;
     }
 
-    protected function getFrom(string $main_point, string $end_point = null): object{
+    protected function getFrom(string $main_point, string $end_point = null): object
+    {
         $this->getUrl($main_point);
-        if (isset($end_point)) $this->getUrl($end_point,$this->__url);
+        if (isset($end_point)) $this->getUrl($end_point, $this->__url);
         return $this->makeRequest();
     }
 }

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Zahzah\ModuleIcd\Providers;
+namespace Hanafalah\ModuleIcd\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Zahzah\ModuleIcd\Commands as Commands;
+use Hanafalah\ModuleIcd\Commands as Commands;
 
 class CommandServiceProvider extends ServiceProvider
 {
@@ -16,7 +16,8 @@ class CommandServiceProvider extends ServiceProvider
     ];
 
 
-    public function register(){
+    public function register()
+    {
         $this->commands(config('module-icd.commands', $this->commands));
     }
     /**

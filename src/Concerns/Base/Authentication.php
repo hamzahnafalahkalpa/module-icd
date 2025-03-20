@@ -1,10 +1,11 @@
 <?php
 
-namespace Zahzah\ModuleIcd\Concerns\Base;
+namespace Hanafalah\ModuleIcd\Concerns\Base;
 
 use Illuminate\Support\Facades\Http;
 
-trait Authentication{
+trait Authentication
+{
     use HasEndPoint, HasRequest;
     protected string $__token_end_point = "https://icdaccessmanagement.who.int/connect/token";
     protected string $__scope = "icdapi_access";
@@ -14,8 +15,9 @@ trait Authentication{
     protected string $__token;
     protected object $__auth;
 
-    public function oauth(): object{
-        $this->setAuth($this->post($this->__token_end_point,[
+    public function oauth(): object
+    {
+        $this->setAuth($this->post($this->__token_end_point, [
             'grant_type'    => $this->__grant_type,
             'client_id'     => $this->__client_id,
             'client_secret' => $this->__client_secret,
@@ -24,7 +26,8 @@ trait Authentication{
         return $this->__auth;
     }
 
-    private function setAuth(mixed $result): self{
+    private function setAuth(mixed $result): self
+    {
         if (!is_object($result)) $result = (object) $result;
         $this->__auth  = $result;
         $this->setToken($this->__auth->access_token);
@@ -32,23 +35,29 @@ trait Authentication{
         return $this;
     }
 
-    public function getToken(): string{
+    public function getToken(): string
+    {
         return $this->__token;
     }
 
-    protected function setToken($token): self {
+    protected function setToken($token): self
+    {
         $this->__token = $token;
         return $this;
     }
 
-    public function getAuthorization(){
+    public function getAuthorization()
+    {
         $token = $this->getToken();
         switch ($this->__auth->token_type) {
-            case 'Bearer': return 'Bearer '.$token;break;
+            case 'Bearer':
+                return 'Bearer ' . $token;
+                break;
         }
     }
 
-    protected function setAuthorization(): self{
+    protected function setAuthorization(): self
+    {
         $authentication        = $this->getConfigAuthentication();
         if (isset($authentication['client_id']) && !isset($authentication['client_secret'])) {
             $this->__client_id     = $authentication['client_id'];

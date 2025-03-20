@@ -1,10 +1,11 @@
 <?php
 
-namespace Zahzah\ModuleIcd\Commands;
+namespace Hanafalah\ModuleIcd\Commands;
 
 use Stichoza\GoogleTranslate\GoogleTranslate;
 
-class ICDTranslateCommand extends EnvironmentCommand{
+class ICDTranslateCommand extends EnvironmentCommand
+{
     /**
      * The name and signature of the console command.
      *
@@ -29,15 +30,16 @@ class ICDTranslateCommand extends EnvironmentCommand{
         $code = $this->argument('code');
         $this->__tr = new GoogleTranslate();
         $this->__tr->setSource($this->option('from') ?? null)->setTarget($this->argument('to'));
-        $icd = $this->ICDModel()->where('code',$code)->first();
+        $icd = $this->ICDModel()->where('code', $code)->first();
         $this->translateICD($icd);
     }
 
-    private function translateICD($icd){
+    private function translateICD($icd)
+    {
         $icd->local_name = $this->__tr->translate($icd->name);
         $icd->save();
-        if ($this->option('childs') && isset($icd->childs) && count($icd->childs) > 0){
-            foreach ($icd->childs as $child){
+        if ($this->option('childs') && isset($icd->childs) && count($icd->childs) > 0) {
+            foreach ($icd->childs as $child) {
                 $this->translateICD($child);
             }
         }

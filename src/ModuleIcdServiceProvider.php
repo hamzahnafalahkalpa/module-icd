@@ -1,30 +1,33 @@
 <?php
 
-namespace Zahzah\ModuleIcd;
+namespace Hanafalah\ModuleIcd;
 
-use Zahzah\LaravelSupport\Providers\BaseServiceProvider;
+use Hanafalah\LaravelSupport\Providers\BaseServiceProvider;
 
 class ModuleIcdServiceProvider extends BaseServiceProvider
 {
-    public function register(){
+    public function register()
+    {
         $this->registerMainClass(ModuleIcd::class)
-             ->registerCommandService(Providers\CommandServiceProvider::class)
-             ->registers([
+            ->registerCommandService(Providers\CommandServiceProvider::class)
+            ->registers([
                 '*',
-                'Services'  => function(){
+                'Services'  => function () {
                     $this->binds([
                         ModuleIcd::class       => ModuleIcd::class,
                         Contracts\ICD10::class => Schemas\ICD10::class
                     ]);
                 }
-             ]);
+            ]);
     }
 
-    protected function dir(): string{
-        return __DIR__.'/';
+    protected function dir(): string
+    {
+        return __DIR__ . '/';
     }
 
-    protected function migrationPath(string $path = ''): string{
+    protected function migrationPath(string $path = ''): string
+    {
         return database_path($path);
     }
 }

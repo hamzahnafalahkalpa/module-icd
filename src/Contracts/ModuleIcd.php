@@ -1,16 +1,17 @@
 <?php
 
-namespace Zahzah\ModuleIcd\Contracts;
+namespace Hanafalah\ModuleIcd\Contracts;
 
 use Illuminate\Database\Eloquent\Model;
-use Zahzah\LaravelSupport\Contracts\DataManagement;
+use Hanafalah\LaravelSupport\Contracts\DataManagement;
 
-interface ModuleIcd extends DataManagement{
+interface ModuleIcd extends DataManagement
+{
     public function oauth(): object;
-    public function installICD(object $icd,? Model $parent_model = null);    
+    public function installICD(object $icd, ?Model $parent_model = null);
     public function setIcdModel(Model $icd): self;
     public function setVersion(string $version): self;
-    public function getRelease10(? string $release_id = null,? string $code = null): object;
+    public function getRelease10(?string $release_id = null, ?string $code = null): object;
     public function getRelease(string $end_point = null): object;
     public function setYearReleaseId(string $year): self;
 }

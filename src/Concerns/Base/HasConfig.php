@@ -1,23 +1,28 @@
 <?php
 
-namespace Zahzah\ModuleIcd\Concerns\Base;
+namespace Hanafalah\ModuleIcd\Concerns\Base;
 
-trait HasConfig{
+trait HasConfig
+{
     protected array $__module_icd_config = [];
 
-    public function getConfigLang(): string{
+    public function getConfigLang(): string
+    {
         return $this->__module_icd_config['lang'];
     }
 
-    public function getConfigApiVersion(): string{
+    public function getConfigApiVersion(): string
+    {
         return $this->__module_icd_config['api_version'];
     }
 
-    public function getConfigAuthentication(): array{
+    public function getConfigAuthentication(): array
+    {
         return $this->__module_icd_config['authentication'];
     }
 
-    protected function setICDConfig(): self{
+    protected function setICDConfig(): self
+    {
         $this->__module_icd_config = config('module-icd');
         return $this;
     }
