@@ -1,0 +1,38 @@
+{
+    "name": "zahzah/module-icd",
+    "description": "bridging to icd who",
+    "type": "package",
+    "require": {
+        "zahzah/laravel-support": "1.x",
+        "stichoza/google-translate-php": "^5.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Zahzah\\ModuleIcd\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Zahzah\\ModuleIcd\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Zahzah\\ModuleIcd\\ModuleIcdServiceProvider"
+            ]
+        }
+    },
+    "authors": [
+        {
+            "name": "Hamzah Nur Al Falah",
+            "email": "hamzahnuralfalah@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": false,
+    "require-dev": {
+        "orchestra/testbench": "^9.7",
+        "phpunit/phpunit": "^11.4"
+    }
+}
