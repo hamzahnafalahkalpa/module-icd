@@ -14,6 +14,10 @@ return [
     'translate' => [
         'to'  => 'id'
     ],
+    'libs' => [
+        'model' => 'Models',
+        'contract' => 'Contracts'
+    ],
     'database' => [
         'models' => [
             'ICD'   => ModuleIcd\ICD::class,
