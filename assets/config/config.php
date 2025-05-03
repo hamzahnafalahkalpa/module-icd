@@ -4,6 +4,21 @@ use Hanafalah\ModuleIcd\Commands;
 use Hanafalah\ModuleIcd\Models as ModuleIcd;
 
 return [
+    'namespace' => 'Hanafalah\\ModuleIcd',
+    'app' => [
+        'contracts' => [
+            //ADD YOUR CONTRACTS HERE
+        ]
+    ],
+    'libs' => [
+        'model' => 'Models',
+        'contract' => 'Contracts',
+        'schema' => 'Schemas',
+        'database' => 'Database',
+        'data' => 'Data',
+        'resource' => 'Resources',
+        'migration' => '../assets/database/migrations'
+    ],
     'version'            => [],
     'lang'               => 'en',
     'api_version'        => env('ICD_API_VERSION', 'v2'),
@@ -16,8 +31,6 @@ return [
     ],
     'database' => [
         'models' => [
-            'ICD'   => ModuleIcd\ICD::class,
-            'ICD10' => ModuleIcd\ICD10::class,
         ]
     ],
     'commands' => [
