@@ -10,15 +10,7 @@ class ModuleIcdServiceProvider extends BaseServiceProvider
     {
         $this->registerMainClass(ModuleIcd::class)
             ->registerCommandService(Providers\CommandServiceProvider::class)
-            ->registers([
-                '*',
-                'Services'  => function () {
-                    $this->binds([
-                        ModuleIcd::class       => ModuleIcd::class,
-                        Contracts\ICD10::class => Schemas\ICD10::class
-                    ]);
-                }
-            ]);
+            ->registers(['*']);
     }
 
     protected function dir(): string

@@ -18,7 +18,7 @@ trait HasRelease
         return $this->getRelease($url);
     }
 
-    public function getRelease(string $end_point = null): object
+    public function getRelease(?string $end_point = null): object
     {
         return $this->getFrom('release', $end_point);
     }

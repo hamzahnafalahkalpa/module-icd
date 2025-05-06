@@ -2,7 +2,7 @@
 
 namespace Hanafalah\ModuleIcd\Schemas;
 
-use Hanafalah\ModuleIcd\Contracts\ICD10 as ContractsICD10;
+use Hanafalah\ModuleIcd\Contracts\Schemas\ICD10 as ContractsICD10;
 use Hanafalah\ModuleIcd\Resources\ICD10\ViewICD10;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -18,8 +18,6 @@ class ICD10 extends ModuleIcd implements ContractsICD10
     protected array $__resources = [
         'view' => ViewICD10::class
     ];
-
-
 
     public function installICD10(string $year_release_id, ?Model $parent_model = null)
     {
