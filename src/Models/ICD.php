@@ -27,8 +27,8 @@ class ICD extends BaseModel
         'code' => 'string'
     ];
 
-    public function toViewApi()
+    public function getViewResource()
     {
-        return new ViewICD($this);
+        return ViewICD::class;
     }
 }

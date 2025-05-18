@@ -16,8 +16,8 @@ class ICD10 extends ICD
         });
     }
 
-    public function toViewApi()
+    public function getViewResource()
     {
-        return new ViewICD10($this);
+        return ViewICD10::class;
     }
 }
