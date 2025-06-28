@@ -20,7 +20,7 @@ trait HasEndPoint
         return $this->__url = $this->__base_url . $url . $end_point;
     }
 
-    protected function getFrom(string $main_point, string $end_point = null): object
+    protected function getFrom(string $main_point, ?string $end_point = null): object
     {
         $this->getUrl($main_point);
         if (isset($end_point)) $this->getUrl($end_point, $this->__url);

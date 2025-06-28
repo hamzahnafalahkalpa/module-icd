@@ -38,7 +38,7 @@ trait HasEntity
         return $this->getEntity('/' . $this->scrapEntityId($id));
     }
 
-    public function getEntity(string $end_point = null): object
+    public function getEntity(?string $end_point = null): object
     {
         return $this->getFrom('entity', $end_point);
     }
