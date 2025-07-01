@@ -15,7 +15,7 @@ class ViewICD extends ApiResource
       'version' => $this->version,
       'childs'  => $this->relationValidation('childs', function () {
         return $this->childs->transform(function ($child) {
-          return $child->toViewApi();
+          return $child->toViewApi()->resolve();
         });
       })
     ];
