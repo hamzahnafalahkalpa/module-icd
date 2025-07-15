@@ -3,7 +3,7 @@
     "description": "bridging to icd who",
     "type": "package",
     "require": {
-        "hanafalah/laravel-support": "1.x-dev as 1.0",
+        "hanafalah/laravel-support": "dev-main",
         "stichoza/google-translate-php": "^5.2"
     },
     "autoload": {
