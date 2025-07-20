@@ -13,7 +13,7 @@ use Hanafalah\ModuleIcd\ModuleIcd;
 class ICD10 extends ModuleIcd implements ContractsICD10
 {
     protected string $__entity = 'ICD';
-    public static $icd_model;
+    public $icd_model;
 
     protected array $__resources = [
         'view' => ViewICD10::class
