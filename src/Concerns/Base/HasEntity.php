@@ -11,7 +11,7 @@ trait HasEntity
         ?float $match_threshold = null
     ): object {
         $this->setQueries(get_defined_vars());
-        return $this->getEntity('/autocode');
+        return $this->getIcdEntity('/autocode');
     }
 
     public function getEntityBySearch(
@@ -25,7 +25,7 @@ trait HasEntity
         bool $highlighting_enabled = true
     ): object {
         $this->setQueries(get_defined_vars());
-        return $this->getEntity('/search');
+        return $this->getIcdEntity('/search');
     }
 
     private function scrapEntityId(string $id): string
@@ -35,10 +35,10 @@ trait HasEntity
 
     public function getEntityById(string $id): object
     {
-        return $this->getEntity('/' . $this->scrapEntityId($id));
+        return $this->getIcdEntity('/' . $this->scrapEntityId($id));
     }
 
-    public function getEntity(?string $end_point = null): object
+    public function getIcdEntity(?string $end_point = null): object
     {
         return $this->getFrom('entity', $end_point);
     }
