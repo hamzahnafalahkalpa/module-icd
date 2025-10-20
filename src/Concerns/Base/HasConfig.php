@@ -21,7 +21,7 @@ trait HasConfig
         return $this->__module_icd_config['authentication'];
     }
 
-    protected function setICDConfig(): self
+    protected function setIcdConfig(): self
     {
         $this->__module_icd_config = config('module-icd');
         return $this;

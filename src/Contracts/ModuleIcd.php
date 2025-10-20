@@ -8,7 +8,7 @@ use Hanafalah\LaravelSupport\Contracts\Supports\DataManagement;
 interface ModuleIcd extends DataManagement
 {
     public function oauth(): object;
-    public function installICD(object $icd, ?Model $parent_model = null);
+    public function installIcd(object $icd, ?Model $parent_model = null);
     public function setIcdModel(Model $icd): self;
     public function setVersion(string $version): self;
     public function getRelease10(?string $release_id = null, ?string $code = null): object;

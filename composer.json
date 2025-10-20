@@ -4,7 +4,8 @@
     "type": "package",
     "require": {
         "hanafalah/laravel-support": "dev-main",
-        "stichoza/google-translate-php": "^5.2"
+        "stichoza/google-translate-php": "^5.2",
+        "hanafalah/module-disease": "dev-main"    
     },
     "autoload": {
         "psr-4": {

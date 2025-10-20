@@ -1,18 +1,14 @@
 <?php
 
-namespace Hanafalah\ModuleIcd\Resources\ICD;
+namespace Hanafalah\ModuleIcd\Resources\Icd;
 
-use Hanafalah\LaravelSupport\Resources\ApiResource;
+use Hanafalah\ModuleDisease\Resources\Disease\ViewDisease;
 
-class ViewICD extends ApiResource
+class ViewIcd extends ViewDisease
 {
   public function toArray(\Illuminate\Http\Request $request): array
   {
     $arr = [
-      'id'      => $this->id,
-      'name'    => $this->name,
-      'code'    => $this->code,
-      'version' => $this->version,
       'childs'  => $this->relationValidation('childs', function () {
         return $this->childs->transform(function ($child) {
           return $child->toViewApi()->resolve();
@@ -20,6 +16,7 @@ class ViewICD extends ApiResource
       })
     ];
 
+    $arr = $this->mergeArray(parent::toArray($request), $arr);
     return $arr;
   }
 }

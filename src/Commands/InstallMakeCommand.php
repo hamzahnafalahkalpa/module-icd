@@ -24,7 +24,7 @@ class InstallMakeCommand extends EnvironmentCommand
      */
     public function handle()
     {
-        $provider = 'Hanafalah\ModuleIcd\ICDServiceProvider';
+        $provider = 'Hanafalah\ModuleIcd\IcdServiceProvider';
 
         $this->callSilent('vendor:publish', [
             '--provider' => $provider,

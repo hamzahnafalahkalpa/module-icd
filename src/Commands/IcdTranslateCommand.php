@@ -4,7 +4,7 @@ namespace Hanafalah\ModuleIcd\Commands;
 
 use Stichoza\GoogleTranslate\GoogleTranslate;
 
-class ICDTranslateCommand extends EnvironmentCommand
+class IcdTranslateCommand extends EnvironmentCommand
 {
     /**
      * The name and signature of the console command.
@@ -18,7 +18,7 @@ class ICDTranslateCommand extends EnvironmentCommand
     /**
      * The console command description.
      *
-     * @var string
+     * @var stringb
      */
     protected $description = 'This command is used for add data from who';
 
@@ -30,17 +30,17 @@ class ICDTranslateCommand extends EnvironmentCommand
         $code = $this->argument('code');
         $this->__tr = new GoogleTranslate();
         $this->__tr->setSource($this->option('from') ?? null)->setTarget($this->argument('to'));
-        $icd = $this->ICDModel()->where('code', $code)->first();
-        $this->translateICD($icd);
+        $icd = $this->IcdModel()->where('code', $code)->first();
+        $this->translateIcd($icd);
     }
 
-    private function translateICD($icd)
+    private function translateIcd($icd)
     {
         $icd->local_name = $this->__tr->translate($icd->name);
         $icd->save();
         if ($this->option('childs') && isset($icd->childs) && count($icd->childs) > 0) {
             foreach ($icd->childs as $child) {
-                $this->translateICD($child);
+                $this->translateIcd($child);
             }
         }
     }

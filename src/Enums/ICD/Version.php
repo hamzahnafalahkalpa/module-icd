@@ -4,6 +4,6 @@ namespace Hanafalah\ModuleIcd\Enums;
 
 enum Version: string
 {
-    case ICD10   = "ICD10_2010";
-    case ICD9CM  = "ICD9CM_2010";
+    case Icd10   = "Icd10_2010";
+    case Icd9CM  = "Icd9CM_2010";
 }

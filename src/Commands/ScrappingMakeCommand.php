@@ -2,7 +2,7 @@
 
 namespace Hanafalah\ModuleIcd\Commands;
 
-use Hanafalah\ModuleIcd\Contracts\ICD10;
+use Hanafalah\ModuleIcd\Contracts\Icd10;
 
 class ScrappingMakeCommand extends EnvironmentCommand
 {
@@ -31,10 +31,10 @@ class ScrappingMakeCommand extends EnvironmentCommand
         switch ($version) {
             case 10:
             default:
-                $icd_schema = app(ICD10::class);
+                $icd_schema = app(Icd10::class);
                 $icd_schema->oauth();
-                $icd_schema->setIcdModel($this->ICD10Model())
-                    ->setVersion('ICD10_' . $releaseId);
+                $icd_schema->setIcdModel($this->Icd10Model())
+                    ->setVersion('Icd10_' . $releaseId);
                 $icd_schema->setYearReleaseId($releaseId);
 
                 $code = $this->option('code');
@@ -45,10 +45,10 @@ class ScrappingMakeCommand extends EnvironmentCommand
                     if (isset($icd->parent) && count($icd->parent) > 0) {
                         $parent = $icd->parent[0];
                         $parent = explode('/', $parent);
-                        $parent_model = $this->ICD10Model()->where('code', end($parent))->first();
+                        $parent_model = $this->Icd10Model()->where('code', end($parent))->first();
                     }
 
-                    $icd_schema->installICD($icd, $parent_model ?? null);
+                    $icd_schema->installIcd($icd, $parent_model ?? null);
                 }
                 break;
         }

@@ -17,9 +17,4 @@ class ModuleIcdServiceProvider extends BaseServiceProvider
     {
         return __DIR__ . '/';
     }
-
-    protected function migrationPath(string $path = ''): string
-    {
-        return database_path($path);
-    }
 }

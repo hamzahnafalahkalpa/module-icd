@@ -12,7 +12,7 @@ class CommandServiceProvider extends ServiceProvider
     private $commands = [
         Commands\InstallMakeCommand::class,
         Commands\ScrappingMakeCommand::class,
-        Commands\ICDTranslateCommand::class
+        Commands\IcdTranslateCommand::class
     ];
 
 

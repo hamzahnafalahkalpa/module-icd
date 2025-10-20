@@ -28,10 +28,11 @@ class ModuleIcd extends PackageManagement implements ContractsModuleIcd
             ->setTarget($config['translate']['to']);
     }
 
-    public function installICD(object $icd, ?Model $parent_model = null)
+    public function installIcd(object $icd, ?Model $parent_model = null)
     {
         $icd_id  = $this->getIdFromUrl($icd->{"@id"});
         $icd_model = $this->__icd_model->updateOrCreate([
+            'flag'      => $this->__icd_model->getMorphClass(),
             'code'      => $icd_id,
             'version'   => $this->__icd_version
         ], [
@@ -68,7 +69,7 @@ class ModuleIcd extends PackageManagement implements ContractsModuleIcd
                 if (method_exists($this, 'getRelease10')) {
                     $icd = $this->getRelease10($this->__year_release, $icd_id);
                 }
-                if (isset($icd)) $this->installICD($icd, $icd_model);
+                if (isset($icd)) $this->installIcd($icd, $icd_model);
             }
         }
         return $icd_model;
@@ -100,7 +101,7 @@ class ModuleIcd extends PackageManagement implements ContractsModuleIcd
 
     protected function setup(): self
     {
-        $this->setICDConfig()
+        $this->setIcdConfig()
             ->setAuthorization();
         return $this;
     }
