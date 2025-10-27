@@ -17,13 +17,6 @@
             "Hanafalah\\ModuleIcd\\Tests\\": "tests/"
         }
     },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Hanafalah\\ModuleIcd\\ModuleIcdServiceProvider"
-            ]
-        }
-    },
     "authors": [
         {
             "name": "Hamzah Nur Al Falah",
