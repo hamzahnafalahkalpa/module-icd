@@ -21,10 +21,10 @@ return [
     ],
     'version'            => [],
     'lang'               => 'en',
-    'api_version'        => env('Icd_API_VERSION', 'v2'),
+    'api_version'        => env('ICD_API_VERSION', 'v2'),
     'authentication'     => [
-        'client_id'      => env('Icd_CLIENT_ID'),
-        'client_secret'  => env('Icd_CLIENT_SECRET')
+        'client_id'      => env('ICD_CLIENT_ID'),
+        'client_secret'  => env('ICD_CLIENT_SECRET')
     ],
     'translate' => [
         'to'  => 'id'
@@ -33,6 +33,7 @@ return [
         'model' => 'Models',
         'contract' => 'Contracts'
     ],
+    'disease_model' => 'Disease',
     'database' => [
         'models' => [
         ]

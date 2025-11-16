@@ -2,7 +2,6 @@
 
 namespace Hanafalah\ModuleIcd\Commands;
 
-use Hanafalah\ModuleIcd\Contracts\Icd10;
 
 class ScrappingMakeCommand extends EnvironmentCommand
 {
@@ -31,8 +30,8 @@ class ScrappingMakeCommand extends EnvironmentCommand
         switch ($version) {
             case 10:
             default:
-                $icd_schema = app(Icd10::class);
-                $icd_schema->oauth();
+                $icd_schema = app(config('app.contracts.Icd10'));
+                $icd_schema->setup()->oauth();
                 $icd_schema->setIcdModel($this->Icd10Model())
                     ->setVersion('Icd10_' . $releaseId);
                 $icd_schema->setYearReleaseId($releaseId);

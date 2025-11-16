@@ -10,8 +10,8 @@ trait Authentication
     protected string $__token_end_point = "https://icdaccessmanagement.who.int/connect/token";
     protected string $__scope = "icdapi_access";
     protected string $__grant_type = 'client_credentials';
-    protected string $__client_id;
-    protected string $__client_secret;
+    protected ?string $__client_id;
+    protected ?string $__client_secret;
     protected string $__token;
     protected object $__auth;
 
@@ -59,10 +59,8 @@ trait Authentication
     protected function setAuthorization(): self
     {
         $authentication        = $this->getConfigAuthentication();
-        if (isset($authentication['client_id']) && !isset($authentication['client_secret'])) {
-            $this->__client_id     = $authentication['client_id'];
-            $this->__client_secret = $authentication['client_secret'];
-        }
+        $this->__client_id     = $authentication['client_id'];
+        $this->__client_secret = $authentication['client_secret'];
         return $this;
     }
 }

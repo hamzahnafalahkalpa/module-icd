@@ -21,16 +21,22 @@ class ModuleIcd extends PackageManagement implements ContractsModuleIcd
 
     public function __construct()
     {
+        // $this->setup();
+        // $config    = $this->__module_icd_config;
+        // $this->__translate = (new GoogleTranslate())
+        //     ->setSource($config['lang'])
+        //     ->setTarget($config['translate']['to']);
+    }
+
+    public function installIcd(object $icd, ?Model $parent_model = null)
+    {
         $this->setup();
         $config    = $this->__module_icd_config;
         $this->__translate = (new GoogleTranslate())
             ->setSource($config['lang'])
             ->setTarget($config['translate']['to']);
-    }
-
-    public function installIcd(object $icd, ?Model $parent_model = null)
-    {
         $icd_id  = $this->getIdFromUrl($icd->{"@id"});
+
         $icd_model = $this->__icd_model->updateOrCreate([
             'flag'      => $this->__icd_model->getMorphClass(),
             'code'      => $icd_id,
@@ -39,30 +45,32 @@ class ModuleIcd extends PackageManagement implements ContractsModuleIcd
             'parent_id' => isset($parent_model) ? $parent_model->getKey() : null,
             'name'      => $icd->title->{'@value'}
         ]);
+        $is_new = $icd_model->wasRecentlyCreated;
+        echo "Importing ICD: {$icd_model->code} - {$icd_model->name}\n";
+        if ($is_new) {
+            $icd_model->lang        = $icd->title->{'@language'};
+            $icd_model->local_name  = $this->__translate->translate($icd_model->name);
+            if (isset($icd->releaseDate)) $icd_model->relase_date = $icd->releaseDate;
+            if (isset($icd->inclusion)) {
+                $inclusions = [];
+                foreach ($icd->inclusion as $inclusion) $inclusions[] = $inclusion->label->{'@value'};
+                $icd_model->setAttribute('inclusions', $inclusions);
+            }
+            if (isset($icd->exclusion)) {
+                $exclusions = [];
+                foreach ($icd->exclusion as $exclusion) $exclusions[] = $exclusion->label->{'@value'};
+                $icd_model->setAttribute('exclusions', $exclusions);
+            }
 
-        $icd_model->lang        = $icd->title->{'@language'};
-        $icd_model->local_name  = $this->__translate->translate($icd_model->name);
+            if (isset($icd->codingHint)) {
+                $codingHints = [];
+                foreach ($icd->codingHint as $codingHint) $codingHints[] = $codingHint->label->{'@value'};
+                $icd_model->setAttribute('coding_hints', $codingHints);
+            }
 
-        if (isset($icd->releaseDate)) $icd_model->relase_date = $icd->releaseDate;
-        if (isset($icd->inclusion)) {
-            $inclusions = [];
-            foreach ($icd->inclusion as $inclusion) $inclusions[] = $inclusion->label->{'@value'};
-            $icd_model->setAttribute('inclusions', $inclusions);
+            if (isset($icd->classKind))  $icd_model->class_kind = $icd->classKind;
+            $icd_model->save();
         }
-        if (isset($icd->exclusion)) {
-            $exclusions = [];
-            foreach ($icd->exclusion as $exclusion) $exclusions[] = $exclusion->label->{'@value'};
-            $icd_model->setAttribute('exclusions', $exclusions);
-        }
-
-        if (isset($icd->codingHint)) {
-            $codingHints = [];
-            foreach ($icd->codingHint as $codingHint) $codingHints[] = $codingHint->label->{'@value'};
-            $icd_model->setAttribute('coding_hints', $codingHints);
-        }
-
-        if (isset($icd->classKind))  $icd_model->class_kind = $icd->classKind;
-        $icd_model->save();
         if (isset($icd->child) && count($icd->child) > 0) {
             foreach ($icd->child as $child) {
                 $icd_id  = $this->getIdFromUrl($child);
